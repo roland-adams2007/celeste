@@ -1,0 +1,290 @@
+@import "tailwindcss";
+body {
+  font-family: "DM Sans", sans-serif;
+  background: #f9f4ee;
+  color: #1a1a1a;
+  margin: 0;
+}
+.font-display {
+  font-family: "Cormorant Garamond", serif;
+}
+
+/* ── HEADER ── */
+#site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  transition:
+    background 0.4s ease,
+    backdrop-filter 0.4s ease,
+    border-color 0.4s ease;
+  border-bottom: 1px solid transparent;
+}
+#site-header.scrolled {
+  background: rgba(249, 244, 238, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom-color: rgba(0, 0, 0, 0.07);
+}
+#site-header.scrolled .nav-link {
+  color: rgba(14, 26, 43, 0.6);
+}
+#site-header.scrolled .nav-link:hover {
+  color: #0e1a2b;
+}
+#site-header.scrolled .logo {
+  color: #0e1a2b;
+}
+#site-header.scrolled .nav-cta {
+  border-color: #0e1a2b;
+  color: #0e1a2b;
+}
+#site-header.scrolled .nav-cta:hover {
+  background: #0e1a2b;
+  color: #fff;
+}
+.nav-link {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+  font-weight: 300;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-link:hover {
+  color: #fff;
+}
+.logo {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 24px;
+  color: #fff;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.nav-cta {
+  font-size: 13px;
+  font-weight: 400;
+  padding: 8px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.nav-cta:hover {
+  background: #fff;
+  color: #0e1a2b;
+}
+
+/* ── HERO ── */
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+.hero-slide.active {
+  opacity: 1;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(14, 26, 43, 0.55) 0%,
+    rgba(14, 26, 43, 0.3) 50%,
+    rgba(14, 26, 43, 0.78) 100%
+  );
+}
+
+/* Hero counter dots */
+.hero-dot {
+  width: 20px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition:
+    background 0.3s,
+    width 0.3s;
+}
+.hero-dot.active {
+  background: #b89c6e;
+  width: 36px;
+}
+
+/* ── SUITES SECTION (asymmetric) ── */
+.suites-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 0;
+}
+
+/* Featured large card – left, spans 2 rows */
+.suite-feature {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.suite-feature img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+  display: block;
+  min-height: 520px;
+}
+.suite-feature:hover img {
+  transform: scale(1.04);
+}
+
+/* Two stacked cards – right */
+.suite-small {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+.suite-small:first-of-type {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.suite-small img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 260px;
+  transition: transform 0.7s ease;
+  display: block;
+}
+.suite-small:hover img {
+  transform: scale(1.04);
+}
+
+/* Overlay info on all suite cards */
+.suite-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 28px 28px 24px;
+  background: linear-gradient(
+    to top,
+    rgba(14, 26, 43, 0.88) 0%,
+    transparent 100%
+  );
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* 4th suite – full width strip below */
+.suite-strip {
+  grid-column: 1 / 3;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+}
+.suite-strip img {
+  width: 55%;
+  height: 220px;
+  object-fit: cover;
+  flex-shrink: 0;
+  transition: transform 0.7s ease;
+}
+.suite-strip:hover img {
+  transform: scale(1.03);
+}
+.suite-strip-info {
+  flex: 1;
+  background: #0e1a2b;
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ── AUTO GALLERY ── */
+.gallery-track {
+  display: flex;
+  gap: 16px;
+  animation: slide-left 30s linear infinite;
+  width: max-content;
+}
+.gallery-track:hover {
+  animation-play-state: paused;
+}
+.gallery-track img {
+  height: 260px;
+  width: 380px;
+  object-fit: cover;
+  flex-shrink: 0;
+  display: block;
+}
+@keyframes slide-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ── FADE UP ── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.d1 {
+  transition-delay: 0.08s;
+}
+.d2 {
+  transition-delay: 0.16s;
+}
+.d3 {
+  transition-delay: 0.24s;
+}
+.d4 {
+  transition-delay: 0.32s;
+}
+
+/* ── MODAL ── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 26, 43, 0.78);
+  z-index: 50;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+.modal-overlay.open {
+  display: flex;
+}
+.modal-box {
+  background: #f9f4ee;
+  max-width: 680px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}

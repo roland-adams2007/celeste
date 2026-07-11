@@ -1,9 +1,20 @@
-import { useState, useEffect } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-// import Header from "./Header";
-// import Sidebar from "./Sidebar";
-// import Footer from "./Footer";
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
+import Header from "./Header";
+import Sidebar from "./Sidebar";
+import Footer from "./Footer";
 
 export default function Layout() {
-  return <Outlet />;
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  return (
+    <>
+      <Header onMenuClick={() => setSidebarOpen(true)} />
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <main>
+        <Outlet />
+      </main>
+      <Footer />
+    </>
+  );
 }
